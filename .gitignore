@@ -1,24 +1,115 @@
-# Compiled class file
-*.class
+==============================================================================
 
-# Log file
+Self-Healing Distributed Cache (.gitignore)
+
+Tech Stack: Java 17 / Spring Boot / Maven / Python 3.10 FastAPI / Docker
+
+==============================================================================
+
+--- Secrets & Environment Variables ---
+
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cer
+
+--- Compiled Java / Maven Artifacts ---
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+--- Python ML Sidecar & Virtual Environments ---
+
+python-sidecar/pycache/
+python-sidecar//pycache/
+python-sidecar/.py[cod]
+python-sidecar/$py.class
+python-sidecar/.pytest_cache/
+python-sidecar/.coverage
+python-sidecar/htmlcov/
+python-sidecar/.env
+python-sidecar/venv/
+python-sidecar/.venv/
+python-sidecar/env/
+python-sidecar/ENV/
+python-sidecar/.egg-info/
+python-sidecar/.mypy_cache/
+
+--- IDE & Editor Artifacts ---
+
+IntelliJ IDEA
+
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+Eclipse
+
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+VS Code
+
+.vscode/
+*.code-workspace
+
+OS Specific
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+--- Logs & Runtime Data ---
+
+logs/
 *.log
+.log.
+*.stdout
+*.stderr
 
-# BlueJ files
-*.ctxt
+--- Docker & Container Mounts ---
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+Exclude persistent MySQL/Kafka local volumes if bound locally
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
+mysql-data/
+kafka-data/
+zookeeper-data/
+redis-data/
+
+--- Chaos Testing Outputs & Dumps ---
+
+chaos/.out
+chaos/.dump
+crash.dump
+heapdump.hprof
+hs_err_pid*
+
+--- Package / Archive Files ---
+
 *.zip
 *.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+*.war
+*.ear
+.jar
+!src/main/resources//.jar
