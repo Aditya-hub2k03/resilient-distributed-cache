@@ -13,7 +13,7 @@
         </Console>
 
         <RollingFile name="FileLogger"
-                     fileName="${LOG_DIR}/selfheal-dc-current.log"
+                     fileName="${LOG_DIR}/selfheal-dc-${date:yyyy-MM-dd_HH-mm-ss-SSS}.log"
                      filePattern="${LOG_DIR}/selfheal-dc-%d{yyyy-MM-dd_HH-mm-ss-SSS}.log">
 
             <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8"/>
