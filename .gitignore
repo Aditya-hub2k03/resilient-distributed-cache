@@ -1,13 +1,9 @@
-==============================================================================
+# ==============================================================================
+# Self-Healing Distributed Cache (.gitignore)
+# Tech Stack: Java 17 / Spring Boot / Maven / Python 3.10 FastAPI / Docker
+# ==============================================================================
 
-Self-Healing Distributed Cache (.gitignore)
-
-Tech Stack: Java 17 / Spring Boot / Maven / Python 3.10 FastAPI / Docker
-
-==============================================================================
-
---- Secrets & Environment Variables ---
-
+# --- Secrets & Environment Variables ---
 .env
 .env.local
 .env.*.local
@@ -15,8 +11,7 @@ Tech Stack: Java 17 / Spring Boot / Maven / Python 3.10 FastAPI / Docker
 *.key
 *.cer
 
---- Compiled Java / Maven Artifacts ---
-
+# --- Compiled Java / Maven Artifacts ---
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -28,12 +23,11 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
---- Python ML Sidecar & Virtual Environments ---
-
-python-sidecar/pycache/
-python-sidecar//pycache/
-python-sidecar/.py[cod]
-python-sidecar/$py.class
+# --- Python ML Sidecar & Virtual Environments ---
+python-sidecar/__pycache__/
+python-sidecar/**/__pycache__/
+python-sidecar/*.py[cod]
+python-sidecar/*$py.class
 python-sidecar/.pytest_cache/
 python-sidecar/.coverage
 python-sidecar/htmlcov/
@@ -42,21 +36,18 @@ python-sidecar/venv/
 python-sidecar/.venv/
 python-sidecar/env/
 python-sidecar/ENV/
-python-sidecar/.egg-info/
+python-sidecar/*.egg-info/
 python-sidecar/.mypy_cache/
 
---- IDE & Editor Artifacts ---
-
-IntelliJ IDEA
-
+# --- IDE & Editor Artifacts ---
+# IntelliJ IDEA
 .idea/
 *.iml
 *.iws
 *.ipr
 out/
 
-Eclipse
-
+# Eclipse
 .apt_generated
 .classpath
 .factorypath
@@ -65,13 +56,11 @@ Eclipse
 .springBeans
 .sts4-cache
 
-VS Code
-
+# VS Code
 .vscode/
 *.code-workspace
 
-OS Specific
-
+# OS Specific
 .DS_Store
 .DS_Store?
 ._*
@@ -80,36 +69,31 @@ OS Specific
 ehthumbs.db
 Thumbs.db
 
---- Logs & Runtime Data ---
-
+# --- Logs & Runtime Data ---
 logs/
 *.log
-.log.
+*.log.*
 *.stdout
 *.stderr
 
---- Docker & Container Mounts ---
-
-Exclude persistent MySQL/Kafka local volumes if bound locally
-
+# --- Docker & Container Mounts ---
+# Exclude persistent MySQL/Kafka local volumes if bound locally
 mysql-data/
 kafka-data/
 zookeeper-data/
 redis-data/
 
---- Chaos Testing Outputs & Dumps ---
-
-chaos/.out
-chaos/.dump
+# --- Chaos Testing Outputs & Dumps ---
+chaos/*.out
+chaos/*.dump
 crash.dump
 heapdump.hprof
 hs_err_pid*
 
---- Package / Archive Files ---
-
+# --- Package / Archive Files ---
 *.zip
 *.tar.gz
 *.war
 *.ear
-.jar
-!src/main/resources//.jar
+*.jar
+!src/main/resources/**/*.jar
