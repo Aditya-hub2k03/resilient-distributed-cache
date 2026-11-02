@@ -2,7 +2,7 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: 'selfheal-dc'
+  - job_name: 'selfheal-dc-cluster'
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['app:8080']
+      - targets: ['node-1:8081', 'node-2:8082', 'node-3:8083']
