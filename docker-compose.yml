@@ -16,7 +16,19 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_gui
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    depends_on:
+      mysql:
+        condition: service_healthy
   redis:
     image: redis:7.2-alpine
     container_name: dc-redis
