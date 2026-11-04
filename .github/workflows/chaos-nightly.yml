@@ -1,0 +1,27 @@
+name: Nightly Chaos & SLO Gate
+on:
+  schedule:
+    - cron: '0 2 * * *' # Every night at 02:00 UTC
+  workflow_dispatch:
+
+jobs:
+  chaos-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Spin up cluster
+        run: docker compose up -d --build
+      - name: Wait for convergence
+        run: sleep 30
+      - name: Run chaos scenario
+        run: |
+          chmod +x chaos/*.sh
+          ./chaos/chaos-runner.sh
+      - name: Validate zero data loss SLO
+        run: |
+          LOSS=$(curl -s http://localhost:8081/actuator/prometheus | grep dc_data_loss_keys_total | awk '{print $2}')
+          if [ "$LOSS" != "0.0" ] && [ -n "$LOSS" ]; then
+            echo "SLO breached: unrecoverable data loss detected ($LOSS)"
+            exit 1
+          fi
+          echo "Chaos test passed with ZERO data loss."

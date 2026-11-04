@@ -1,0 +1,212 @@
+{
+  "info": {
+    "name": "Self-Healing Distributed Cache (DC) API Test Suite",
+    "_postman_id": "7b09b0b4-eefc-4e8c-a99f-7299a9cf5e05",
+    "description": "Comprehensive Postman test collection for Self-Healing Distributed Cache Phases 1 through 5.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Phase 1 - Cache Operations",
+      "item": [
+        {
+          "name": "Put Cache Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"postman:user:101\",\n  \"value\": \"Aditya Sai\",\n  \"ttlSeconds\": 120\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cache",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cache"]
+            }
+          }
+        },
+        {
+          "name": "Get Cache Entry",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cache/postman:user:101",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cache", "postman:user:101"]
+            }
+          }
+        },
+        {
+          "name": "Get Cache Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cache/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cache", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Delete Cache Entry",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cache/postman:user:101",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cache", "postman:user:101"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 2 & 3 - Cluster & Ring Operations",
+      "item": [
+        {
+          "name": "Get Hash Ring State",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/ring",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "ring"]
+            }
+          }
+        },
+        {
+          "name": "List Active Nodes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/nodes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "nodes"]
+            }
+          }
+        },
+        {
+          "name": "Get Cluster Health & Phi Scores",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "health"]
+            }
+          }
+        },
+        {
+          "name": "Trigger Ring Rebalance",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/rebalance?triggerNodeId=admin-manual",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "rebalance"],
+              "query": [
+                { "key": "triggerNodeId", "value": "admin-manual" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 4 - Self-Healing Operations",
+      "item": [
+        {
+          "name": "Force Anti-Entropy Heal",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/heal",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "heal"]
+            }
+          }
+        },
+        {
+          "name": "Get Merkle Tree",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/merkle-tree",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "merkle-tree"]
+            }
+          }
+        },
+        {
+          "name": "Get Quarantined Nodes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cluster/quarantine",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cluster", "quarantine"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 5 - AI Predictive & Capacity Insights",
+      "item": [
+        {
+          "name": "Predictive Failure Risk for Node",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/ai/failure-predictions/node-2",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "ai", "failure-predictions", "node-2"]
+            }
+          }
+        },
+        {
+          "name": "Get Intelligent Eviction Suggestions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/ai/eviction-suggestions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "ai", "eviction-suggestions"]
+            }
+          }
+        },
+        {
+          "name": "Generate AI Capacity Plan",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/ai/capacity-plan",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "ai", "capacity-plan"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actuator Prometheus Metrics",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/actuator/prometheus",
+          "host": ["{{baseUrl}}"],
+          "path": ["actuator", "prometheus"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081",
+      "type": "string"
+    }
+  ]
+}
