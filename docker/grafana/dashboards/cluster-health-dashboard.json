@@ -1,0 +1,36 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "title": "Self-Healing Distributed Cache - Cluster Health",
+  "panels": [
+    {
+      "title": "Phi Accrual Suspicion Level",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "dc_heartbeat_phi", "legendFormat": "{{node}}" }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 }
+    },
+    {
+      "title": "Pending Hinted Handoffs",
+      "type": "stat",
+      "targets": [
+        { "expr": "dc_handoff_pending_total" }
+      ],
+      "gridPos": { "h": 8, "w": 6, "x": 12, "y": 0 }
+    },
+    {
+      "title": "Failover Duration (Seconds)",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "rate(dc_failover_duration_seconds_sum[1m]) / rate(dc_failover_duration_seconds_count[1m])" }
+      ],
+      "gridPos": { "h": 8, "w": 6, "x": 18, "y": 0 }
+    }
+  ],
+  "schemaVersion": 39,
+  "version": 1
+}
